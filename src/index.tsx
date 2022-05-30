@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import './i18n/config';
 import './styles/custom.scss';
 
 ReactDOM.render(

@@ -6,9 +6,7 @@ interface IProps {}
 
 const AppView: React.FC<IProps> = () => {
 	return (
-		<React.Fragment>
-			<Main></Main>
-		</React.Fragment>
+		<Main />
 	);
 };
 

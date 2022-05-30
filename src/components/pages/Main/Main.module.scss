@@ -1,0 +1,73 @@
+.mainWrapper {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	height: 80%;
+
+	.form {
+		display: flex;
+		align-items: center;
+		flex-direction: column;
+
+		&__timestampInput {
+			display: block;
+			height: 40px;
+			padding: 5px;
+			margin-top: 10px;
+			line-height: 1.5;
+			font-size: 20px;
+			color: rgb(14, 14, 16);
+			background: #dee1e2;
+			transition: box-shadow 100ms ease-in, border 100ms ease-in, background-color 100ms ease-in;
+			border: 2px solid #dee1e2;
+			border-radius: 6px;
+
+			&:hover {
+				border-color: #ccc;
+			}
+
+			&:focus {
+				border-color: #9147ff;
+				background: #fff;
+			}
+		}
+
+		&__fileInput {
+			padding: 6px 12px;
+			margin-top: 10px;
+			cursor: pointer;
+			border: 1px solid #ccc;
+		}
+
+		&__fileUploaded {
+			padding: 6px 12px;
+			margin-top: 10px;
+			border: 1px solid #ccc;
+		}
+
+		&__deleteFile {
+			margin-top: 10px;
+			border: 1px solid #ccc;
+		}
+
+		&__button {
+			display: inline-block;
+			padding: 6px 12px;
+			margin-top: 10px;
+			cursor: pointer;
+			border: 1px solid #ccc;
+		}
+	}
+}
+
+.datePickerWrapper {
+	display: flex;
+	border: 3px solid black;
+
+	&__datePicker {
+		margin: auto;
+		padding: 10px;
+		border: 3px solid red;
+	}
+}

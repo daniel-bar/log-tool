@@ -6,9 +6,11 @@ module.exports = {
 	},
 	extends: [
 		'eslint:recommended',
-		'next/core-web-vitals',
 		'plugin:@typescript-eslint/recommended',
 		'plugin:import/typescript',
+		'plugin:import/recommended',
+		'plugin:import/react',
+		'plugin:react/jsx-runtime',
 		'prettier',
 	],
 	parserOptions: {
@@ -19,7 +21,14 @@ module.exports = {
 		project: 'tsconfig.json',
 		sourceType: 'module',
 	},
-	plugins: ['@typescript-eslint', 'unused-imports', 'node'],
+	plugins: [
+		'@typescript-eslint',
+		'unused-imports',
+		'eslint-plugin-react',
+		'react-hooks',
+		'react',
+		'jsx-a11y',
+	],
 	rules: {
 		'indent': ['error', 'tab'],
 		'quotes': ['error', 'single', { avoidEscape: true }],
@@ -48,7 +57,6 @@ module.exports = {
 		'no-implicit-globals': 'error',
 		'no-useless-call': 'error',
 		'jsx-quotes': ['error', 'prefer-double'],
-		'curly': ['error', 'all'],
 		'padding-line-between-statements': [
 			'error',
 			{
@@ -58,7 +66,6 @@ module.exports = {
 
 					'let',
 					'const',
-					'var',
 
 					'return',
 					'throw',
@@ -126,8 +133,6 @@ module.exports = {
 		'@typescript-eslint/no-non-null-assertion': 'off',
 
 		'unused-imports/no-unused-imports': 'error',
-
-		'@next/next/no-img-element': 'error',
 
 		'jsx-a11y/alt-text': 'error',
 		'jsx-a11y/html-has-lang': 'error',
@@ -227,8 +232,6 @@ module.exports = {
 				groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index', 'object'],
 			},
 		],
-
-		'node/no-sync': 'error',
 	},
 	settings: {
 		react: {

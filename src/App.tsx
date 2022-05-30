@@ -8,4 +8,6 @@ const App: React.FC<IProps> = () => {
 	return <AppView />;
 };
 
+App.displayName = 'App';
+
 export default React.memo(App);
