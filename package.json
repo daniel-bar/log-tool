@@ -2,6 +2,7 @@
 	"name": "log-tool",
 	"version": "1.0.0",
 	"description": "Log Tool",
+	"repository": "https://github.com/daniel-bar/log-tool/",
 	"author": {
 		"name": "Daniel Bar"
 	},
