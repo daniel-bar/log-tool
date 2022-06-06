@@ -4,15 +4,13 @@ import formatDate from '../../../utils/dateFormat';
 
 import MainView from './Main.view';
 
-// const match = lines[i].match(
-// 	/[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1]) (0[0-9]|1[0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])/,
-// );
-
 interface IProps {}
 
 const Main: React.FC<IProps> = () => {
 	const [fileState, setFileState] = useState<File>();
+	const [fileNameState, setFileNameState] = useState<string>('');
 	const [fileResultState, setFileResultState] = useState<string[]>([]);
+	const [proccessingFileState, setProccessingFileState] = useState<boolean>(false);
 
 	const [startDateState, setStartDateState] = useState<Date>(new Date());
 	const [endDateState, setEndDateState] = useState<Date>(new Date());
@@ -23,6 +21,7 @@ const Main: React.FC<IProps> = () => {
 
 		if (!file) return alert('File error');
 
+		setFileNameState(file.name);
 		setFileState(file);
 	};
 
@@ -31,23 +30,25 @@ const Main: React.FC<IProps> = () => {
 	};
 
 	const onProcessFile = async () => {
-		if (!fileState) return alert('File error');
+		setProccessingFileState(true);
+		setFileResultState([]);
 
 		const fileByLines: string[] = [];
+		let firstTimestampIndex: number | undefined;
+		let endTimestampIndex: number | undefined;
 
-		// Streaming the file in chunks and write in text
+		if (!fileState) return alert('File error');
+
+		// Streaming file in chunks & writing file to text
 		await (fileState.stream() as unknown as ReadableStream).pipeThrough(new TextDecoderStream()).pipeTo(
 			new WritableStream({
 				write(fileInText) {
-					if (!fileInText) return;
+					if (!fileInText) return alert('File error');
 
 					fileByLines.push(...fileInText.match(/[^\r\n]+/g)!);
 				},
 			}),
 		);
-
-		let firstTimestampIndex: number | undefined;
-		let endTimestampIndex: number | undefined;
 
 		for (let i = 0; i < fileByLines.length; i++) {
 			const startTimestamp = fileByLines[i].match(formatDate(startDateState));
@@ -68,19 +69,26 @@ const Main: React.FC<IProps> = () => {
 			if (firstTimestampIndex && endTimestampIndex) break;
 		}
 
-		const result = fileByLines.slice(firstTimestampIndex, endTimestampIndex);
+		if (firstTimestampIndex !== undefined && endTimestampIndex !== undefined) {
+			const result = fileByLines.slice(firstTimestampIndex, endTimestampIndex);
 
-		setFileResultState(result);
+			setFileResultState(result);
+			setProccessingFileState(false);
+		} else {
+			setProccessingFileState(false);
+		}
 	};
 
 	return (
 		<MainView
 			fileState={fileState}
+			fileNameState={fileNameState}
 			fileResultState={fileResultState}
 			startDateState={startDateState}
 			setStartDateState={setStartDateState}
 			endDateState={endDateState}
 			setEndDateState={setEndDateState}
+			proccessingFileState={proccessingFileState}
 			onUploadFile={onUploadFile}
 			onDeleteFile={onDeleteFile}
 			onProcessFile={onProcessFile}

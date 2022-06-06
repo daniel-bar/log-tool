@@ -1,73 +1,178 @@
 .mainWrapper {
 	display: flex;
+	height: 100%;
 	align-items: center;
 	justify-content: center;
-	flex-direction: column;
-	height: 80%;
+	background-color: #ececec;
 
-	.form {
+	.innerWrapper {
 		display: flex;
 		align-items: center;
 		flex-direction: column;
+		width: 850px;
+		height: 700px;
+		border-radius: 10px;
+		box-shadow: 0 0 25px rgba(0, 0, 0, 0.25);
+		background-color: #fff;
 
-		&__timestampInput {
-			display: block;
-			height: 40px;
-			padding: 5px;
-			margin-top: 10px;
-			line-height: 1.5;
-			font-size: 20px;
-			color: rgb(14, 14, 16);
-			background: #dee1e2;
-			transition: box-shadow 100ms ease-in, border 100ms ease-in, background-color 100ms ease-in;
-			border: 2px solid #dee1e2;
-			border-radius: 6px;
+		&__title {
+			margin-top: 20px;
+			font-weight: 100;
+		}
 
-			&:hover {
-				border-color: #ccc;
+		.datePickerWrapper {
+			display: flex;
+
+			&__datePicker {
+				margin-top: 50px;
+				width: 200px;
+
+				&:not(:last-child) {
+					margin-right: 30px;
+				}
+			}
+		}
+
+		.uploadFileWrapper {
+			width: 430px;
+			height: 50px;
+			margin-top: 20px;
+			background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='13' ry='13' stroke='lightgrey' stroke-width='4' stroke-dasharray='6%2c 14' stroke-dashoffset='19' stroke-linecap='square'/%3e%3c/svg%3e");
+			border-radius: 13px;
+
+			&__uploadFile {
+				display: flex;
+				flex-direction: row;
+				justify-content: center;
+				align-items: center;
+				width: 100%;
+				height: 100%;
+				color: #2e81ec;
+				cursor: pointer;
+				text-decoration: underline;
+
+				&--svg {
+					margin-right: 5px;
+				}
 			}
 
-			&:focus {
-				border-color: #9147ff;
-				background: #fff;
+			&__fileUploaded {
+				display: flex;
+				flex-direction: row;
+				height: 100%;
+				justify-content: space-between;
+				align-items: center;
+				transition: 0.3s ease;
+
+				&--fileName {
+					margin-left: 20px;
+					font-weight: 600;
+				}
+
+				&--deleteFile {
+					margin-right: 20px;
+					cursor: pointer;
+				}
 			}
-		}
-
-		&__fileInput {
-			padding: 6px 12px;
-			margin-top: 10px;
-			cursor: pointer;
-			border: 1px solid #ccc;
-		}
-
-		&__fileUploaded {
-			padding: 6px 12px;
-			margin-top: 10px;
-			border: 1px solid #ccc;
-		}
-
-		&__deleteFile {
-			margin-top: 10px;
-			border: 1px solid #ccc;
 		}
 
 		&__button {
-			display: inline-block;
-			padding: 6px 12px;
-			margin-top: 10px;
+			min-height: 45px;
+			max-height: 45px;
+			padding: 10px 25px;
+			margin-top: 20px;
+			color: #fff;
+			border-radius: 4px;
 			cursor: pointer;
-			border: 1px solid #ccc;
+			background: #2e81ec;
+			transition: 0.3s ease;
+
+			&:hover {
+				background: #42a5fc;
+				transition: 0.3s ease;
+			}
+		}
+
+		&__disabledButton {
+			min-height: 45px;
+			max-height: 45px;
+			padding: 10px 25px;
+			margin-top: 20px;
+			color: #9ea6b9;
+			border-radius: 4px;
+			background: #dfe1e7;
+		}
+
+		.results {
+			display: flex;
+			flex-direction: column;
+			margin-top: 20px;
+			height: 50%;
+			width: 90%;
+			border-radius: 4px;
+			background-color: #f2f3f3;
+
+			&__rows {
+				overflow: auto;
+
+				&::-webkit-scrollbar {
+					width: 5px;
+					height: 5px;
+				}
+
+				&::-webkit-scrollbar-thumb {
+					background: #9ea6b9;
+					border-radius: 4px;
+				}
+
+				&::-webkit-scrollbar-track {
+					background: #dfe1e7;
+				}
+			}
+
+			&__row {
+				margin-left: 15px;
+				font-size: 0.9rem;
+				font-weight: 600;
+				white-space: nowrap;
+			}
+
+			&__noResult {
+				margin: auto;
+				text-align: center;
+				font-size: 2rem;
+				font-weight: 600;
+			}
 		}
 	}
 }
 
-.datePickerWrapper {
+.loader {
 	display: flex;
-	border: 3px solid black;
+	height: auto;
+	justify-content: center;
+	align-items: center;
+}
 
-	&__datePicker {
-		margin: auto;
-		padding: 10px;
-		border: 3px solid red;
+.spinner {
+	height: 3vh;
+	width: 3vh;
+	border: 6px solid #fff;
+	border-top-color: #9ea6b9;
+	border-radius: 100%;
+	animation: rotation 1.3s infinite ease-in-out 0.25s;
+	opacity: 0;
+	margin-right: 10px;
+}
+
+@keyframes rotation {
+	from {
+		opacity: 1;
+		transform: rotate(0deg);
+	}
+
+	to {
+		opacity: 1;
+		transform: rotate(359deg);
 	}
 }
