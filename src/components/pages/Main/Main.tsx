@@ -30,12 +30,12 @@ const Main: React.FC<IProps> = () => {
 	};
 
 	const onProcessFile = async () => {
-		setProccessingFileState(true);
-		setFileResultState([]);
-
 		const fileByLines: string[] = [];
 		let firstTimestampIndex: number | undefined;
 		let endTimestampIndex: number | undefined;
+
+		setProccessingFileState(true);
+		setFileResultState([]);
 
 		if (!fileState) return alert('File error');
 
