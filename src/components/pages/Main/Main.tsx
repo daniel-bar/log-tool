@@ -30,7 +30,7 @@ const Main: React.FC<IProps> = () => {
 	};
 
 	const onProcessFile = async () => {
-		const fileByLines: string[] = [];
+		const logs: string[] = [];
 		let firstTimestampIndex: number | undefined;
 		let endTimestampIndex: number | undefined;
 
@@ -39,29 +39,32 @@ const Main: React.FC<IProps> = () => {
 
 		if (!fileState) return alert('File error');
 
-		// Streaming file in chunks & writing file to text
+		// Streaming file in chunks, writing file to text & pushing the results by lines into logs array
 		await (fileState.stream() as unknown as ReadableStream).pipeThrough(new TextDecoderStream()).pipeTo(
 			new WritableStream({
 				write(fileInText) {
 					if (!fileInText) return alert('File error');
 
-					fileByLines.push(...fileInText.match(/[^\r\n]+/g)!);
+					logs.push(...fileInText.match(/[^\r\n]+/g)!);
 				},
 			}),
 		);
 
-		for (let i = 0; i < fileByLines.length; i++) {
-			const startTimestamp = fileByLines[i].match(formatDate(startDateState));
-			const endTimestamp = fileByLines[i].match(formatDate(endDateState));
+		for (let i = 0; i < logs.length; i++) {
+			const formatedStartDate = formatDate(startDateState);
+			const formatedEndDate = formatDate(endDateState);
+
+			const startTimestamp = logs[i].match(formatedStartDate);
+			const endTimestamp = logs[i].match(formatedEndDate);
 
 			if (startTimestamp) {
-				const startTimestampPrevIteration = fileByLines[i - 1]?.match(formatDate(startDateState));
+				const startTimestampPrevIteration = logs[i - 1]?.match(formatedStartDate);
 
 				if (!startTimestampPrevIteration) firstTimestampIndex = i;
 			}
 
 			if (endTimestamp) {
-				const endTimestampNextIteration = fileByLines[i + 1]?.match(formatDate(endDateState));
+				const endTimestampNextIteration = logs[i + 1]?.match(formatedEndDate);
 
 				if (!endTimestampNextIteration) endTimestampIndex = i + 1;
 			}
@@ -70,7 +73,7 @@ const Main: React.FC<IProps> = () => {
 		}
 
 		if (firstTimestampIndex !== undefined && endTimestampIndex !== undefined) {
-			const result = fileByLines.slice(firstTimestampIndex, endTimestampIndex);
+			const result = logs.slice(firstTimestampIndex, endTimestampIndex);
 
 			setFileResultState(result);
 			setProccessingFileState(false);
