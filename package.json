@@ -28,12 +28,6 @@
 		"template:layout": "hygen component new-layout",
 		"template:ui": "hygen component new-ui"
 	},
-	"eslintConfig": {
-		"extends": [
-			"react-app",
-			"react-app/jest"
-		]
-	},
 	"browserslist": {
 		"production": [
 			">0.2%",
