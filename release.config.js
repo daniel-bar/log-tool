@@ -1,6 +1,6 @@
 module.exports = {
 	branches: ['main'],
-	repositoryUrl: 'git+https://github.com/Vinyl-Depository/landing-page',
+	repositoryUrl: 'git+https://https://github.com/Enigma-Securities/log-tool',
 	plugins: [
 		'@semantic-release/commit-analyzer',
 		'@semantic-release/release-notes-generator',

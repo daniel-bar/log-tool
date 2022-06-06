@@ -1,17 +1,12 @@
 {
 	"ignores": [
-		"sharp",
-
 		"stylelint-config-prettier-scss",
 		"stylelint-config-recess-order",
 		"stylelint-config-standard-scss",
 		"lint-staged",
 		"commitizen",
-		"@types/node",
-		"@types/jest",
 		"@types/react-dom",
 		"@commitlint/cli",
-		"@builder.io/partytown",
 		"cz-vinyl"
 	],
 	"skipMissing": true
