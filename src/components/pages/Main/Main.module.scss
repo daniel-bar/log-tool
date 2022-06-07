@@ -91,6 +91,36 @@
 				background: #42a5fc;
 				transition: 0.3s ease;
 			}
+
+			.loader {
+				display: flex;
+				height: auto;
+				justify-content: center;
+				align-items: center;
+			}
+
+			.spinner {
+				height: 3vh;
+				width: 3vh;
+				border: 6px solid #fff;
+				border-top-color: #9ea6b9;
+				border-radius: 100%;
+				animation: rotation 1.3s infinite ease-in-out 0.25s;
+				opacity: 0;
+				margin-right: 10px;
+			}
+
+			@keyframes rotation {
+				from {
+					opacity: 1;
+					transform: rotate(0deg);
+				}
+
+				to {
+					opacity: 1;
+					transform: rotate(359deg);
+				}
+			}
 		}
 
 		&__disabledButton {
@@ -106,11 +136,35 @@
 		.results {
 			display: flex;
 			flex-direction: column;
+			padding: 10px;
 			margin-top: 20px;
 			height: 50%;
 			width: 90%;
 			border-radius: 4px;
 			background-color: #f2f3f3;
+
+			&__header {
+				display: flex;
+				justify-content: space-between;
+				margin: 0 5px 5px 5px;
+
+				&--resultsLength {
+					align-self: center;
+					color: #2e81ec;
+				}
+
+				&--downloadButton {
+					height: 24px;
+					width: 115px;
+					color: #2e81ec;
+					border-radius: 3px;
+					border: 1px solid #2e81ec;
+				}
+
+				&--svg {
+					margin-right: 7px;
+				}
+			}
 
 			&__rows {
 				overflow: auto;
@@ -144,35 +198,5 @@
 				font-weight: 600;
 			}
 		}
-	}
-}
-
-.loader {
-	display: flex;
-	height: auto;
-	justify-content: center;
-	align-items: center;
-}
-
-.spinner {
-	height: 3vh;
-	width: 3vh;
-	border: 6px solid #fff;
-	border-top-color: #9ea6b9;
-	border-radius: 100%;
-	animation: rotation 1.3s infinite ease-in-out 0.25s;
-	opacity: 0;
-	margin-right: 10px;
-}
-
-@keyframes rotation {
-	from {
-		opacity: 1;
-		transform: rotate(0deg);
-	}
-
-	to {
-		opacity: 1;
-		transform: rotate(359deg);
 	}
 }

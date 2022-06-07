@@ -1,4 +1,5 @@
 import React, { ChangeEvent, useState } from 'react';
+import FileSaver from 'file-saver';
 
 import formatDate from '../../../utils/dateFormat';
 
@@ -8,6 +9,8 @@ interface IProps {}
 
 const Main: React.FC<IProps> = () => {
 	const [fileState, setFileState] = useState<File>();
+	const [resultFileState, setResultFileState] = useState<Blob>();
+	const [resultLengthState, setResultLengthState] = useState<number>(0);
 	const [fileNameState, setFileNameState] = useState<string>('');
 	const [fileResultState, setFileResultState] = useState<string[]>([]);
 	const [proccessingFileState, setProccessingFileState] = useState<boolean>(false);
@@ -74,18 +77,35 @@ const Main: React.FC<IProps> = () => {
 
 		if (firstTimestampIndex !== undefined && endTimestampIndex !== undefined) {
 			const result = logs.slice(firstTimestampIndex, endTimestampIndex);
+			const resultSeparatedByLines: string[] = [];
+
+			// Adding \r\n to each value in the array for separation by lines
+			for (let i = 0; i < result.length; i++) {
+				resultSeparatedByLines.push(result[i] + '\r\n');
+			}
+
+			const resultFile = new Blob(resultSeparatedByLines, { type: 'text/plain;charset=utf-8' });
 
 			setFileResultState(result);
+			setResultFileState(resultFile);
+			setResultLengthState(result.length);
 			setProccessingFileState(false);
 		} else {
 			setProccessingFileState(false);
 		}
 	};
 
+	const onDownloadFile = () => {
+		if (!resultFileState) return alert('No File to download');
+
+		FileSaver.saveAs(resultFileState, `Results-${fileNameState}`);
+	};
+
 	return (
 		<MainView
 			fileState={fileState}
 			fileNameState={fileNameState}
+			resultLengthState={resultLengthState}
 			fileResultState={fileResultState}
 			startDateState={startDateState}
 			setStartDateState={setStartDateState}
@@ -95,6 +115,7 @@ const Main: React.FC<IProps> = () => {
 			onUploadFile={onUploadFile}
 			onDeleteFile={onDeleteFile}
 			onProcessFile={onProcessFile}
+			onDownloadFile={onDownloadFile}
 		/>
 	);
 };
