@@ -76,8 +76,8 @@ const Main: React.FC<IProps> = () => {
 		}
 
 		if (firstTimestampIndex !== undefined && endTimestampIndex !== undefined) {
-			const result = logs.slice(firstTimestampIndex, endTimestampIndex);
 			const resultSeparatedByLines: string[] = [];
+			const result = logs.slice(firstTimestampIndex, endTimestampIndex);
 
 			// Adding \r\n to each value in the array for separation by lines
 			for (let i = 0; i < result.length; i++) {
