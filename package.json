@@ -17,7 +17,7 @@
 		"build": "react-scripts build",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject",
-		"lint": "run-p ts-lint styelint",
+		"lint": "run-p stylelint",
 		"eslint": "eslint \"src/**/*.{ts,tsx}\" --fix",
 		"eslint:fix": "eslint \"src/**/*.{ts,tsx}\" --fix",
 		"stylelint": "stylelint \"src/**/*.scss\"",
