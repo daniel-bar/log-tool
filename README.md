@@ -1,6 +1,6 @@
 ### _Log Toll_
 
--   [React.js] - Library for building component-based frontend application
+-   [React.js with TypeScript] - Library for building component-based frontend application
 -   [Husky] - Git hooks
 -   [Hygen] - Automate building components for React
 -   [Commitlint] - Linting the git commit messages
