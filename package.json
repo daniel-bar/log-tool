@@ -9,7 +9,7 @@
 	"private": true,
 	"license": "UNLICENSED",
 	"scripts": {
-		"preinstall": "is-ci || npx only-allow yarn",
+		"preinstall": "is-ci || npx only-allow pnpm",
 		"husky:install": "husky install",
 		"git:config": "git config --local include.path ../.gitconfig",
 		"prepare": "is-ci || run-p husky:install git:config",
