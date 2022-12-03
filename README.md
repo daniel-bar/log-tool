@@ -7,7 +7,7 @@
 -   [ESLint] - Linting the code and prevents bad code
 -   [Git] - Version manager for the repository
 -   [Prettier] - Styling your code
--   [Yarn] - Package manager
+-   [Pnpm] - Package manager
 -   [Lint-Staged] - Linting files in the staging phase
 -   [StyleLint] - Linting style code
 -   [Depcheck] - Chack for unused dependencies
