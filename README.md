@@ -10,7 +10,7 @@
 -   [Pnpm] - Package manager
 -   [Lint-Staged] - Linting files in the staging phase
 -   [StyleLint] - Linting style code
--   [Depcheck] - Chack for unused dependencies
+-   [Depcheck] - Check for unused dependencies
 
 ## Installation
 
