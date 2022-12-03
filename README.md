@@ -1,4 +1,4 @@
-### _Log Toll_
+### _Log Tool_
 
 -   [React.js with TypeScript] - Library for building component-based frontend application
 -   [Husky] - Git hooks
